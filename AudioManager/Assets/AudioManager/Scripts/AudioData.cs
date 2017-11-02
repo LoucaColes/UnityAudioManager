@@ -20,10 +20,12 @@ namespace AudioManager
         public float m_pitch;
 
         [Range(0f, 5f)]
-        public float m_fadeInTime;
+        public float m_fadeInSpeed;
 
         [Range(0f, 5f)]
-        public float m_fadeOutTime;
+        public float m_fadeOutSpeed;
+
+        public bool m_fade;
 
         [HideInInspector]
         public GameObject m_object;

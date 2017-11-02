@@ -296,6 +296,36 @@ Prefab:
       propertyPath: m_backgroundMusicList.Array.data[1].m_fadeInTime
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
+        type: 2}
+      propertyPath: m_backgroundMusicList.Array.data[1].m_fadeInSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
+        type: 2}
+      propertyPath: m_backgroundMusicList.Array.data[1].m_fadeOutSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
+        type: 2}
+      propertyPath: m_backgroundMusicList.Array.data[1].m_fade
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
+        type: 2}
+      propertyPath: m_backgroundMusicList.Array.data[0].m_fade
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
+        type: 2}
+      propertyPath: m_backgroundMusicList.Array.data[0].m_fadeInSpeed
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
+        type: 2}
+      propertyPath: m_backgroundMusicList.Array.data[0].m_fadeOutSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8d9e7a175009fff469f5a6f03b4b1d5f, type: 2}
   m_IsPrefabParent: 0

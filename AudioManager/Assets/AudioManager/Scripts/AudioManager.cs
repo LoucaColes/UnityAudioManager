@@ -35,10 +35,6 @@ namespace AudioManager
         {
         }
 
-        private void Update()
-        {
-        }
-
         private void SetUpMusic()
         {
             Debug.Log("Setting Up Music");
@@ -57,7 +53,7 @@ namespace AudioManager
                 m_backgroundMusicList[i].m_audioSource.pitch = m_backgroundMusicList[i].m_pitch;
                 m_backgroundMusicList[i].m_audioSource.loop = m_backgroundMusicList[i].m_looping;
             }
-            m_currentMusic = m_backgroundMusicList[0];
+            m_currentMusic = null;
             m_prevMusic = m_currentMusic;
         }
 
@@ -103,13 +99,22 @@ namespace AudioManager
             }
             else
             {
-                if (m_currentMusic != null && t_data.m_fadeInTime == 0)
-                {
-                    m_prevMusic = m_currentMusic;
-                    m_currentMusic.m_audioSource.Stop();
-                }
-                t_data.m_audioSource.Play();
+                m_prevMusic = m_currentMusic;
                 m_currentMusic = t_data;
+
+                t_data.m_audioSource.Play();
+                if (!t_data.m_fade && m_prevMusic.m_audioSource != null)
+                {
+                    m_prevMusic.m_audioSource.Stop();
+                }
+                if (m_currentMusic.m_fade)
+                {
+                    StartCoroutine(FadeIn(m_currentMusic));
+                    if (m_prevMusic.m_audioSource != null)
+                    {
+                        StartCoroutine(FadeOut(m_prevMusic));
+                    }
+                }
             }
         }
 
@@ -118,13 +123,23 @@ namespace AudioManager
             if (_id >= 0 && _id < m_backgroundMusicList.Length)
             {
                 Debug.Log("Playing Music");
-                if (m_currentMusic != null && m_backgroundMusicList[_id].m_fadeInTime == 0)
-                {
-                    m_prevMusic = m_currentMusic;
-                    m_currentMusic.m_audioSource.Stop();
-                }
-                m_backgroundMusicList[_id].m_audioSource.Play();
+
+                m_prevMusic = m_currentMusic;
                 m_currentMusic = m_backgroundMusicList[_id];
+
+                m_backgroundMusicList[_id].m_audioSource.Play();
+                if (!m_backgroundMusicList[_id].m_fade && m_prevMusic.m_audioSource != null)
+                {
+                    m_prevMusic.m_audioSource.Stop();
+                }
+                if (m_currentMusic.m_fade)
+                {
+                    StartCoroutine(FadeIn(m_currentMusic));
+                    if (m_prevMusic.m_audioSource != null)
+                    {
+                        StartCoroutine(FadeOut(m_prevMusic));
+                    }
+                }
             }
             else
             {
@@ -158,6 +173,36 @@ namespace AudioManager
             {
                 Debug.LogError("Didnt find sound");
                 return;
+            }
+        }
+
+        private IEnumerator FadeIn(AudioData _audioData)
+        {
+            _audioData.m_audioSource.volume = 0;
+            float t_volume = _audioData.m_audioSource.volume;
+
+            while (_audioData.m_audioSource.volume < _audioData.m_volume)
+            {
+                t_volume += _audioData.m_fadeInSpeed;
+                _audioData.m_audioSource.volume = t_volume;
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+
+        private IEnumerator FadeOut(AudioData _audioData)
+        {
+            float t_volume = _audioData.m_audioSource.volume;
+
+            while (_audioData.m_audioSource.volume > 0)
+            {
+                t_volume -= _audioData.m_fadeOutSpeed;
+                _audioData.m_audioSource.volume = t_volume;
+                yield return new WaitForSeconds(0.1f);
+            }
+            if (_audioData.m_audioSource.volume == 0)
+            {
+                _audioData.m_audioSource.Stop();
+                _audioData.m_audioSource.volume = _audioData.m_volume;
             }
         }
     }
