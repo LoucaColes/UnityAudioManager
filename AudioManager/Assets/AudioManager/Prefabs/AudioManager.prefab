@@ -51,12 +51,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb5fcf1aa18d6a748bc3fce43c208123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_backgroundMusic:
+  m_backgroundMusicList: []
+  m_sfxList: []
+  m_currentMusic:
     m_name: 
     m_audioClip: {fileID: 0}
     m_looping: 0
     m_volume: 0
     m_pitch: 0
+    m_fadeInSpeed: 0
+    m_fadeOutSpeed: 0
+    m_fade: 0
     m_object: {fileID: 0}
     m_audioSource: {fileID: 0}
-  m_sfxDataList: []
+  m_prevMusic:
+    m_name: 
+    m_audioClip: {fileID: 0}
+    m_looping: 0
+    m_volume: 0
+    m_pitch: 0
+    m_fadeInSpeed: 0
+    m_fadeOutSpeed: 0
+    m_fade: 0
+    m_object: {fileID: 0}
+    m_audioSource: {fileID: 0}

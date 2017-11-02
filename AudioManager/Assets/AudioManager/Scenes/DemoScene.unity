@@ -199,11 +199,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4622562484731112, guid: 8d9e7a175009fff469f5a6f03b4b1d5f, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -235,96 +230,6 @@ Prefab:
     - target: {fileID: 4622562484731112, guid: 8d9e7a175009fff469f5a6f03b4b1d5f, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.data[0].m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 75a52c511ee773e468b6884c21b112fc, type: 3}
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.data[0].m_name
-      value: MainTheme
-      objectReference: {fileID: 0}
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.data[0].m_volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.data[0].m_pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.data[0].m_looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.data[1].m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8673239d36d2e724589756b86665e54d, type: 3}
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.data[1].m_name
-      value: SteelThyShovel
-      objectReference: {fileID: 0}
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.data[1].m_volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.data[1].m_pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.data[1].m_looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.data[0].m_fadeInTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.data[1].m_fadeInTime
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.data[1].m_fadeInSpeed
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.data[1].m_fadeOutSpeed
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.data[1].m_fade
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.data[0].m_fade
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.data[0].m_fadeInSpeed
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.data[0].m_fadeOutSpeed
-      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8d9e7a175009fff469f5a6f03b4b1d5f, type: 2}
