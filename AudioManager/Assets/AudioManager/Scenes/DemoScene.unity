@@ -199,11 +199,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114702320289062492, guid: 8d9e7a175009fff469f5a6f03b4b1d5f,
-        type: 2}
-      propertyPath: m_backgroundMusicList.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4622562484731112, guid: 8d9e7a175009fff469f5a6f03b4b1d5f, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -268,6 +263,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _name: 
+  m_sfxGlobalVolume: 0.5
+  m_musicGlobalVolume: 1
+  m_masterVolume: 1
 --- !u!4 &1724382019
 Transform:
   m_ObjectHideFlags: 0

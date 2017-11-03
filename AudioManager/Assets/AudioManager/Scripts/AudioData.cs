@@ -9,12 +9,24 @@ namespace AudioManager
     public class AudioData
     {
         public string m_name;
+
+        public enum AudioType
+        {
+            SFX,
+            MUSIC,
+        }
+
+        public AudioType m_type;
+
         public AudioClip m_audioClip;
 
         public bool m_looping;
 
         [Range(0f, 1f)]
         public float m_volume;
+
+        [Range(0f, 1f), SerializeField]
+        private float m_origVolume;
 
         [Range(0.3f, 3f)]
         public float m_pitch;
@@ -32,5 +44,15 @@ namespace AudioManager
 
         [HideInInspector]
         public AudioSource m_audioSource;
+
+        public void SetOriginalVolume(float _volume)
+        {
+            m_origVolume = _volume;
+        }
+
+        public float GetOriginalVolume()
+        {
+            return m_origVolume;
+        }
     }
 }

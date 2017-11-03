@@ -19,6 +19,15 @@ namespace AudioManager
         [SerializeField]
         private AudioData m_prevMusic;
 
+        [Range(0, 1), SerializeField]
+        private float m_sfxGlobalVolume = 1f;
+
+        [Range(0, 1), SerializeField]
+        private float m_musicGlobalVolume = 1f;
+
+        [Range(0, 1), SerializeField]
+        private float m_masterVolume = 1f;
+
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
@@ -57,9 +66,32 @@ namespace AudioManager
                 _array[i].m_audioSource = t_audioSource;
 
                 _array[i].m_audioSource.clip = _array[i].m_audioClip;
+                _array[i].SetOriginalVolume(_array[i].m_volume);
+                _array[i].m_volume = UpdateAudioDataVolume(_array[i]);
                 _array[i].m_audioSource.volume = _array[i].m_volume;
                 _array[i].m_audioSource.pitch = _array[i].m_pitch;
                 _array[i].m_audioSource.loop = _array[i].m_looping;
+            }
+        }
+
+        private void UpdateArrayVolume(AudioData[] _array)
+        {
+            for (int i = 0; i < _array.Length; i++)
+            {
+                _array[i].m_volume = UpdateAudioDataVolume(_array[i]);
+                _array[i].m_audioSource.volume = _array[i].m_volume;
+            }
+        }
+
+        private float UpdateAudioDataVolume(AudioData _audioData)
+        {
+            if (_audioData.m_type == AudioData.AudioType.MUSIC)
+            {
+                return _audioData.GetOriginalVolume() * m_musicGlobalVolume * m_masterVolume;
+            }
+            else
+            {
+                return _audioData.GetOriginalVolume() * m_sfxGlobalVolume * m_masterVolume;
             }
         }
 
@@ -177,6 +209,53 @@ namespace AudioManager
                 _audioData.m_audioSource.Stop();
                 _audioData.m_audioSource.volume = _audioData.m_volume;
             }
+        }
+
+        public void SetSfxGlobalVolume(float _volume)
+        {
+            if (_volume >= 0 && _volume <= 1)
+            {
+                m_sfxGlobalVolume = _volume;
+                UpdateArrayVolume(m_sfxList);
+            }
+        }
+
+        public void SetMusicGlobalVolume(float _volume)
+        {
+            if (_volume >= 0 && _volume <= 1)
+            {
+                m_musicGlobalVolume = _volume;
+                UpdateArrayVolume(m_backgroundMusicList);
+            }
+        }
+
+        public void SetMasterVolume(float _volume)
+        {
+            if (_volume >= 0 && _volume <= 1)
+            {
+                m_masterVolume = _volume;
+                UpdateArrayVolume(m_sfxList);
+                UpdateArrayVolume(m_backgroundMusicList);
+            }
+        }
+
+        public void UpdateGlobalVolumes(float _sfxVolume, float _musicVolume, float _masterVolume)
+        {
+            if (_sfxVolume >= 0 && _sfxVolume <= 1)
+            {
+                m_sfxGlobalVolume = _sfxVolume;
+            }
+            if (_musicVolume >= 0 && _musicVolume <= 1)
+            {
+                m_musicGlobalVolume = _musicVolume;
+            }
+            if (_masterVolume >= 0 && _masterVolume <= 1)
+            {
+                m_masterVolume = _masterVolume;
+            }
+
+            UpdateArrayVolume(m_sfxList);
+            UpdateArrayVolume(m_backgroundMusicList);
         }
     }
 }

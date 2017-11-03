@@ -51,8 +51,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb5fcf1aa18d6a748bc3fce43c208123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_backgroundMusicList: []
-  m_sfxList: []
+  m_backgroundMusicList:
+  - m_name: A Hero
+    m_audioClip: {fileID: 8300000, guid: 17a540a28b4be4700a06354a5bac0b10, type: 3}
+    m_looping: 1
+    m_volume: 1
+    m_pitch: 1
+    m_fadeInSpeed: 0
+    m_fadeOutSpeed: 0
+    m_fade: 0
+    m_object: {fileID: 0}
+    m_audioSource: {fileID: 0}
+  - m_name: The Quest
+    m_audioClip: {fileID: 8300000, guid: b19dff20a9a1841fbb27f3d2d7add8af, type: 3}
+    m_looping: 1
+    m_volume: 1
+    m_pitch: 1
+    m_fadeInSpeed: 0
+    m_fadeOutSpeed: 0
+    m_fade: 0
+    m_object: {fileID: 0}
+    m_audioSource: {fileID: 0}
+  m_sfxList:
+  - m_name: Explosion
+    m_audioClip: {fileID: 8300000, guid: 066d4f15549a6480eaea224b69a1c85f, type: 3}
+    m_looping: 0
+    m_volume: 1
+    m_pitch: 1
+    m_fadeInSpeed: 0
+    m_fadeOutSpeed: 0
+    m_fade: 0
+    m_object: {fileID: 0}
+    m_audioSource: {fileID: 0}
+  - m_name: Collect
+    m_audioClip: {fileID: 8300000, guid: 9fe330231cc2d4a01aa086aba00b09fd, type: 3}
+    m_looping: 0
+    m_volume: 1
+    m_pitch: 1
+    m_fadeInSpeed: 0
+    m_fadeOutSpeed: 0
+    m_fade: 0
+    m_object: {fileID: 0}
+    m_audioSource: {fileID: 0}
   m_currentMusic:
     m_name: 
     m_audioClip: {fileID: 0}
@@ -75,3 +115,6 @@ MonoBehaviour:
     m_fade: 0
     m_object: {fileID: 0}
     m_audioSource: {fileID: 0}
+  m_sfxGlobalVolume: 1
+  m_musicGlobalVolume: 1
+  m_masterVolume: 1
