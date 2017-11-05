@@ -14,6 +14,7 @@ namespace AudioManager
         {
             SFX,
             MUSIC,
+            VOICE,
         }
 
         public AudioType m_type;

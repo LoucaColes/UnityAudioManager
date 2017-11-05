@@ -7,11 +7,16 @@ namespace AudioManager
 {
     public class AudioManager : MonoBehaviour
     {
+        public static AudioManager m_instance;
+
+        [SerializeField]
+        private List<GameObject> m_catogories;
+
         public AudioData[] m_backgroundMusicList;
 
         public AudioData[] m_sfxList;
 
-        public static AudioManager m_instance;
+        public AudioData[] m_voiceList;
 
         [SerializeField]
         private AudioData m_currentMusic;
@@ -26,17 +31,24 @@ namespace AudioManager
         private float m_musicGlobalVolume = 1f;
 
         [Range(0, 1), SerializeField]
+        private float m_voiceGlobalVolume = 1f;
+
+        [Range(0, 1), SerializeField]
         private float m_masterVolume = 1f;
 
         private void Awake()
         {
+            m_catogories = new List<GameObject>();
+
             DontDestroyOnLoad(gameObject);
 
             CreateInstance();
 
-            SetUpAudioArray(m_backgroundMusicList);
+            SetUpAudioArray(m_backgroundMusicList, "Background Music");
 
-            SetUpAudioArray(m_sfxList);
+            SetUpAudioArray(m_sfxList, "SFX");
+
+            SetUpAudioArray(m_voiceList, "Voice Lines");
 
             ClearCurrentPrevMusic();
         }
@@ -53,12 +65,16 @@ namespace AudioManager
             }
         }
 
-        private void SetUpAudioArray(AudioData[] _array)
+        private void SetUpAudioArray(AudioData[] _array, string _arrayName)
         {
+            GameObject t_catergory = new GameObject(_arrayName);
+            t_catergory.transform.parent = transform;
+            m_catogories.Add(t_catergory);
+
             for (int i = 0; i < _array.Length; i++)
             {
                 GameObject t_child = new GameObject(_array[i].m_name);
-                t_child.transform.parent = transform;
+                t_child.transform.parent = t_catergory.transform;
 
                 AudioSource t_audioSource = t_child.AddComponent<AudioSource>();
 
@@ -89,9 +105,13 @@ namespace AudioManager
             {
                 return _audioData.GetOriginalVolume() * m_musicGlobalVolume * m_masterVolume;
             }
-            else
+            else if (_audioData.m_type == AudioData.AudioType.SFX)
             {
                 return _audioData.GetOriginalVolume() * m_sfxGlobalVolume * m_masterVolume;
+            }
+            else
+            {
+                return _audioData.GetOriginalVolume() * m_voiceGlobalVolume * m_masterVolume;
             }
         }
 
@@ -181,6 +201,34 @@ namespace AudioManager
             }
         }
 
+        public void PlayVoice(string _name)
+        {
+            AudioData t_data = Array.Find(m_voiceList, voice => voice.m_name == _name);
+            if (t_data == null)
+            {
+                Debug.LogError("Didnt find voice");
+                return;
+            }
+            else
+            {
+                t_data.m_audioSource.Play();
+            }
+        }
+
+        public void PlayVoice(int _id)
+        {
+            if (_id >= 0 && _id < m_voiceList.Length)
+            {
+                Debug.Log("Playing voice");
+                m_voiceList[_id].m_audioSource.Play();
+            }
+            else
+            {
+                Debug.LogError("Didnt find voice");
+                return;
+            }
+        }
+
         private IEnumerator FadeIn(AudioData _audioData)
         {
             _audioData.m_audioSource.volume = 0;
@@ -229,6 +277,15 @@ namespace AudioManager
             }
         }
 
+        public void SetVoiceGlobalVolume(float _volume)
+        {
+            if (_volume >= 0 && _volume <= 1)
+            {
+                m_voiceGlobalVolume = _volume;
+                UpdateArrayVolume(m_voiceList);
+            }
+        }
+
         public void SetMasterVolume(float _volume)
         {
             if (_volume >= 0 && _volume <= 1)
@@ -236,6 +293,7 @@ namespace AudioManager
                 m_masterVolume = _volume;
                 UpdateArrayVolume(m_sfxList);
                 UpdateArrayVolume(m_backgroundMusicList);
+                UpdateArrayVolume(m_voiceList);
             }
         }
 
@@ -256,6 +314,7 @@ namespace AudioManager
 
             UpdateArrayVolume(m_sfxList);
             UpdateArrayVolume(m_backgroundMusicList);
+            UpdateArrayVolume(m_voiceList);
         }
     }
 }
