@@ -82,11 +82,7 @@ namespace AudioManager
                 _array[i].m_audioSource = t_audioSource;
 
                 _array[i].m_audioSource.clip = _array[i].m_audioClip;
-                _array[i].SetOriginalVolume(_array[i].m_volume);
-                _array[i].m_volume = UpdateAudioDataVolume(_array[i]);
-                _array[i].m_audioSource.volume = _array[i].m_volume;
-                _array[i].m_audioSource.pitch = _array[i].m_pitch;
-                _array[i].m_audioSource.loop = _array[i].m_looping;
+                UpdateData(_array, i);
             }
         }
 
@@ -121,7 +117,7 @@ namespace AudioManager
             m_prevMusic = m_currentMusic;
         }
 
-        public void PlayMusic(string _name)
+        public void PlayMusic(string _name, Vector3 _pos)
         {
             Debug.Log("Playing Music");
             AudioData t_data = Array.Find(m_backgroundMusicList, bgm => bgm.m_name == _name);
@@ -134,11 +130,12 @@ namespace AudioManager
             {
                 m_prevMusic = m_currentMusic;
                 m_currentMusic = t_data;
+                t_data.m_object.transform.position = _pos;
                 PlayNextMusicTrack();
             }
         }
 
-        public void PlayMusic(int _id)
+        public void PlayMusic(int _id, Vector3 _pos)
         {
             if (_id >= 0 && _id < m_backgroundMusicList.Length)
             {
@@ -146,7 +143,7 @@ namespace AudioManager
 
                 m_prevMusic = m_currentMusic;
                 m_currentMusic = m_backgroundMusicList[_id];
-
+                m_currentMusic.m_object.transform.position = _pos;
                 PlayNextMusicTrack();
             }
             else
@@ -173,7 +170,7 @@ namespace AudioManager
             }
         }
 
-        public void PlaySFX(string _name)
+        public void PlaySFX(string _name, Vector3 _pos)
         {
             AudioData t_data = Array.Find(m_sfxList, sfx => sfx.m_name == _name);
             if (t_data == null)
@@ -183,15 +180,17 @@ namespace AudioManager
             }
             else
             {
+                t_data.m_object.transform.position = _pos;
                 t_data.m_audioSource.Play();
             }
         }
 
-        public void PlaySFX(int _id)
+        public void PlaySFX(int _id, Vector3 _pos)
         {
             if (_id >= 0 && _id < m_sfxList.Length)
             {
                 Debug.Log("Playing sound");
+                m_sfxList[_id].m_object.transform.position = _pos;
                 m_sfxList[_id].m_audioSource.Play();
             }
             else
@@ -315,6 +314,46 @@ namespace AudioManager
             UpdateArrayVolume(m_sfxList);
             UpdateArrayVolume(m_backgroundMusicList);
             UpdateArrayVolume(m_voiceList);
+        }
+
+        public void UpdateSoundVariables(AudioData.AudioType _audioType, int _id, float _volume, float _pitch, bool _looping, float _panStereo, float _spatialBlend)
+        {
+            switch (_audioType)
+            {
+                case AudioData.AudioType.MUSIC:
+                    UpdateData(m_backgroundMusicList, _id, _volume, _pitch, _looping, _panStereo, _spatialBlend);
+                    break;
+
+                case AudioData.AudioType.SFX:
+                    UpdateData(m_sfxList, _id, _volume, _pitch, _looping, _panStereo, _spatialBlend);
+                    break;
+
+                case AudioData.AudioType.VOICE:
+                    UpdateData(m_voiceList, _id, _volume, _pitch, _looping, _panStereo, _spatialBlend);
+                    break;
+            }
+        }
+
+        private void UpdateData(AudioData[] _array, int _id)
+        {
+            _array[_id].SetOriginalVolume(_array[_id].m_volume);
+            _array[_id].m_volume = UpdateAudioDataVolume(_array[_id]);
+            _array[_id].m_audioSource.volume = _array[_id].m_volume;
+            _array[_id].m_audioSource.pitch = _array[_id].m_pitch;
+            _array[_id].m_audioSource.loop = _array[_id].m_looping;
+            _array[_id].m_audioSource.panStereo = _array[_id].m_panStereo;
+            _array[_id].m_audioSource.spatialBlend = _array[_id].m_spatialBlend;
+        }
+
+        private void UpdateData(AudioData[] _array, int _id, float _volume, float _pitch, bool _looping, float _panStereo, float _spatialBlend)
+        {
+            _array[_id].SetOriginalVolume(_volume);
+            _array[_id].m_volume = UpdateAudioDataVolume(_array[_id]);
+            _array[_id].m_audioSource.volume = _array[_id].m_volume;
+            _array[_id].m_audioSource.pitch = _pitch;
+            _array[_id].m_audioSource.loop = _looping;
+            _array[_id].m_audioSource.panStereo = _panStereo;
+            _array[_id].m_audioSource.spatialBlend = _spatialBlend;
         }
     }
 }

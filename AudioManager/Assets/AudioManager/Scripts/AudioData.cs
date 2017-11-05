@@ -32,6 +32,12 @@ namespace AudioManager
         [Range(0.3f, 3f)]
         public float m_pitch;
 
+        [Range(-1f, 1f)]
+        public float m_panStereo;
+
+        [Range(0f, 1f)]
+        public float m_spatialBlend;
+
         [Range(0f, 5f)]
         public float m_fadeInSpeed;
 

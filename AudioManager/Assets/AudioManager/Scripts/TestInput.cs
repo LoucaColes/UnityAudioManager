@@ -17,6 +17,8 @@ public class TestInput : MonoBehaviour
     [Range(0, 1)]
     public float m_masterVolume;
 
+    public Vector3 m_pos;
+
     // Use this for initialization
     private void Start()
     {
@@ -27,11 +29,19 @@ public class TestInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
-            AudioManager.AudioManager.m_instance.PlayMusic(_id);
+            AudioManager.AudioManager.m_instance.PlayMusic(_id, m_pos);
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            AudioManager.AudioManager.m_instance.PlaySFX(_id);
+            AudioManager.AudioManager.m_instance.PlaySFX(_id, m_pos);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            AudioManager.AudioManager.m_instance.PlaySFX(_id, Vector3.zero);
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            AudioManager.AudioManager.m_instance.UpdateSoundVariables(AudioData.AudioType.SFX, _id, 0, 0, false, 0, 0);
         }
         if (Input.GetKeyDown(KeyCode.V))
         {

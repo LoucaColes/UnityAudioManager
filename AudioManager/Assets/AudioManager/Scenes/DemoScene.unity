@@ -266,6 +266,7 @@ MonoBehaviour:
   m_sfxGlobalVolume: 0.5
   m_musicGlobalVolume: 1
   m_masterVolume: 1
+  m_pos: {x: 5, y: 0, z: 0}
 --- !u!4 &1724382019
 Transform:
   m_ObjectHideFlags: 0
