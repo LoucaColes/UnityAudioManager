@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb5fcf1aa18d6a748bc3fce43c208123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_catogories: []
+  m_categories: []
   m_backgroundMusicList:
   - m_name: A Hero
     m_type: 0
@@ -59,11 +59,17 @@ MonoBehaviour:
     m_looping: 1
     m_volume: 1
     m_origVolume: 0
+    m_priority: 0
     m_pitch: 1
     m_panStereo: 0
+    m_spatialBlend: 0
     m_fadeInSpeed: 0
     m_fadeOutSpeed: 0
     m_fade: 0
+    m_delayTime: 0
+    m_randVolume: 0
+    m_randPitch: 0
+    m_randDelay: 0
     m_object: {fileID: 0}
     m_audioSource: {fileID: 0}
   - m_name: The Quest
@@ -72,11 +78,17 @@ MonoBehaviour:
     m_looping: 1
     m_volume: 1
     m_origVolume: 0
+    m_priority: 0
     m_pitch: 1
     m_panStereo: 0
+    m_spatialBlend: 0
     m_fadeInSpeed: 0
     m_fadeOutSpeed: 0
     m_fade: 0
+    m_delayTime: 0
+    m_randVolume: 0
+    m_randPitch: 0
+    m_randDelay: 0
     m_object: {fileID: 0}
     m_audioSource: {fileID: 0}
   m_sfxList:
@@ -86,11 +98,17 @@ MonoBehaviour:
     m_looping: 0
     m_volume: 1
     m_origVolume: 0
+    m_priority: 0
     m_pitch: 1
     m_panStereo: 0
+    m_spatialBlend: 0
     m_fadeInSpeed: 0
     m_fadeOutSpeed: 0
     m_fade: 0
+    m_delayTime: 0
+    m_randVolume: 0
+    m_randPitch: 0
+    m_randDelay: 0
     m_object: {fileID: 0}
     m_audioSource: {fileID: 0}
   - m_name: Collect
@@ -99,11 +117,17 @@ MonoBehaviour:
     m_looping: 0
     m_volume: 1
     m_origVolume: 0
+    m_priority: 0
     m_pitch: 1
     m_panStereo: 0
+    m_spatialBlend: 0
     m_fadeInSpeed: 0
     m_fadeOutSpeed: 0
     m_fade: 0
+    m_delayTime: 1
+    m_randVolume: 0
+    m_randPitch: 0
+    m_randDelay: 0
     m_object: {fileID: 0}
     m_audioSource: {fileID: 0}
   m_voiceList: []
@@ -114,11 +138,17 @@ MonoBehaviour:
     m_looping: 0
     m_volume: 0
     m_origVolume: 0
+    m_priority: 0
     m_pitch: 0
     m_panStereo: 0
+    m_spatialBlend: 0
     m_fadeInSpeed: 0
     m_fadeOutSpeed: 0
     m_fade: 0
+    m_delayTime: 0
+    m_randVolume: 0
+    m_randPitch: 0
+    m_randDelay: 0
     m_object: {fileID: 0}
     m_audioSource: {fileID: 0}
   m_prevMusic:
@@ -128,14 +158,24 @@ MonoBehaviour:
     m_looping: 0
     m_volume: 0
     m_origVolume: 0
+    m_priority: 0
     m_pitch: 0
     m_panStereo: 0
+    m_spatialBlend: 0
     m_fadeInSpeed: 0
     m_fadeOutSpeed: 0
     m_fade: 0
+    m_delayTime: 0
+    m_randVolume: 0
+    m_randPitch: 0
+    m_randDelay: 0
     m_object: {fileID: 0}
     m_audioSource: {fileID: 0}
+  m_currentSFX: []
+  m_currentVoices: []
   m_sfxGlobalVolume: 1
   m_musicGlobalVolume: 1
   m_voiceGlobalVolume: 1
   m_masterVolume: 1
+  m_volumeMinMax: {x: 0, y: 0}
+  m_pitchMinMax: {x: 0, y: 0}
