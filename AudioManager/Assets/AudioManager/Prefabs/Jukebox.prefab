@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1681691527071280}
+  m_IsPrefabParent: 1
+--- !u!1 &1681691527071280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4695322703667456}
+  - component: {fileID: 114032812059208808}
+  m_Layer: 0
+  m_Name: Jukebox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4695322703667456
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1681691527071280}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114032812059208808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1681691527071280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37344df0a89d69e4a8b07cb35de57a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playlist:
+  - m_name: 1
+    m_type: 1
+    m_audioClip: {fileID: 8300000, guid: 17a540a28b4be4700a06354a5bac0b10, type: 3}
+    m_looping: 0
+    m_volume: 1
+    m_origVolume: 1
+    m_priority: 0
+    m_pitch: 1
+    m_panStereo: 0
+    m_spatialBlend: 0
+    m_fadeInSpeed: 0
+    m_fadeOutSpeed: 0
+    m_fade: 0
+    m_delayTime: 0
+    m_randVolume: 0
+    m_randPitch: 0
+    m_randDelay: 0
+    m_object: {fileID: 0}
+    m_audioSource: {fileID: 0}
+  - m_name: 2
+    m_type: 1
+    m_audioClip: {fileID: 8300000, guid: 6e2a4fec68fd744608580458d10fbc19, type: 3}
+    m_looping: 0
+    m_volume: 1
+    m_origVolume: 1
+    m_priority: 0
+    m_pitch: 1
+    m_panStereo: 0
+    m_spatialBlend: 0
+    m_fadeInSpeed: 0
+    m_fadeOutSpeed: 0
+    m_fade: 0
+    m_delayTime: 0
+    m_randVolume: 0
+    m_randPitch: 0
+    m_randDelay: 0
+    m_object: {fileID: 0}
+    m_audioSource: {fileID: 0}
+  - m_name: 3
+    m_type: 1
+    m_audioClip: {fileID: 8300000, guid: da2e56652c06549d1b028c5c7fa38841, type: 3}
+    m_looping: 0
+    m_volume: 1
+    m_origVolume: 1
+    m_priority: 0
+    m_pitch: 1
+    m_panStereo: 0
+    m_spatialBlend: 0
+    m_fadeInSpeed: 0
+    m_fadeOutSpeed: 0
+    m_fade: 0
+    m_delayTime: 0
+    m_randVolume: 0
+    m_randPitch: 0
+    m_randDelay: 0
+    m_object: {fileID: 0}
+    m_audioSource: {fileID: 0}
+  m_id: 0
+  m_currentlyPlaying:
+    m_name: 
+    m_type: 0
+    m_audioClip: {fileID: 0}
+    m_looping: 0
+    m_volume: 0
+    m_origVolume: 0
+    m_priority: 0
+    m_pitch: 0
+    m_panStereo: 0
+    m_spatialBlend: 0
+    m_fadeInSpeed: 0
+    m_fadeOutSpeed: 0
+    m_fade: 0
+    m_delayTime: 0
+    m_randVolume: 0
+    m_randPitch: 0
+    m_randDelay: 0
+    m_object: {fileID: 0}
+    m_audioSource: {fileID: 0}
+  m_playType: 1
+  m_playTime: 0
+  m_timer: 0
