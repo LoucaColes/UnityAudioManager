@@ -378,70 +378,96 @@ namespace AudioManager
             m_currentSFX.Add(t_data);
         }
 
+        // Play SFX by passing in a id
         public void PlaySFX(int _id)
         {
+            // Check whether the id is within range
             if (_id >= 0 && _id < m_sfxList.Length)
             {
                 Debug.Log("Playing sound");
+                // Check if the volume is to be random
                 if (m_sfxList[_id].m_randVolume)
                 {
+                    // If so randomise volume
                     m_sfxList[_id].m_audioSource.volume = UnityEngine.Random.Range(0.1f, 1);
                 }
+                // Check if the pitch is to be random
                 if (m_sfxList[_id].m_randPitch)
                 {
+                    // If so randomise pitch
                     m_sfxList[_id].m_audioSource.pitch = UnityEngine.Random.Range(0.3f, 3);
                 }
+                // Check if there is a delay and if there isn't play sfx
                 if (m_sfxList[_id].m_delayTime == 0)
                 {
                     m_sfxList[_id].m_audioSource.Play();
                 }
+                // If there is
                 else if (m_sfxList[_id].m_delayTime > 0 || m_sfxList[_id].m_randDelay)
                 {
+                    // Set delay time and randomise if needed
                     float t_delayTime = m_sfxList[_id].m_delayTime;
                     if (m_sfxList[_id].m_randDelay)
                     {
                         t_delayTime = UnityEngine.Random.Range(0.1f, 1f);
                     }
+                    // Play the sfx after the delayed time
                     m_sfxList[_id].m_audioSource.PlayDelayed(t_delayTime);
                 }
+                // Add sfx to the current playing sfx list
                 m_currentSFX.Add(m_sfxList[_id]);
             }
-            else
+            else // If not in range display error message and return
             {
                 Debug.LogError("Didnt find sound");
                 return;
             }
         }
 
+        // Play SFX by passing in a id and a world space position
         public void PlaySFX(int _id, Vector3 _pos)
         {
+            // Check whether the id is within range
             if (_id >= 0 && _id < m_sfxList.Length)
             {
                 Debug.Log("Playing sound");
+
+                // Set the sound's object's position
                 m_sfxList[_id].m_object.transform.position = _pos;
+
+                // Check if the volume is to be random
                 if (m_sfxList[_id].m_randVolume)
                 {
+                    // If so randomise volume
                     m_sfxList[_id].m_audioSource.volume = UnityEngine.Random.Range(0.1f, 1);
                 }
+                // Check if the pitch is to be random
                 if (m_sfxList[_id].m_randPitch)
                 {
+                    // If so randomise pitch
                     m_sfxList[_id].m_audioSource.pitch = UnityEngine.Random.Range(0.3f, 3);
                 }
+                // Check if there is a delay and if there isn't play sfx
                 if (m_sfxList[_id].m_delayTime == 0)
                 {
                     m_sfxList[_id].m_audioSource.Play();
                 }
+                // If there is
                 else if (m_sfxList[_id].m_delayTime > 0 || m_sfxList[_id].m_randDelay)
                 {
+                    // Set delay time and randomise if needed
                     float t_delayTime = m_sfxList[_id].m_delayTime;
                     if (m_sfxList[_id].m_randDelay)
                     {
                         t_delayTime = UnityEngine.Random.Range(0.1f, 1f);
                     }
+                    // Play the sfx after the delayed time
                     m_sfxList[_id].m_audioSource.PlayDelayed(t_delayTime);
                 }
+                // Add sfx to the current playing sfx list
                 m_currentSFX.Add(m_sfxList[_id]);
             }
+            // If not in range display error message and return
             else
             {
                 Debug.LogError("Didnt find sound");
@@ -449,139 +475,182 @@ namespace AudioManager
             }
         }
 
+        // Play voice line by passing in the name
         public void PlayVoice(string _name)
         {
+            // Attempt to get the audio date for the voice line
             AudioData t_data = Array.Find(m_voiceList, voice => voice.m_name == _name);
-            if (t_data == null)
+            if (t_data == null) // If it doesn't exist then display error message
             {
                 Debug.LogError("Didnt find voice");
                 return;
             }
-            else
+            else // If it was found
             {
+                // Check if there is a delay and if not play voice clip
                 if (t_data.m_delayTime == 0)
                 {
                     t_data.m_audioSource.Play();
                 }
+                // If there is a delay
                 else if (t_data.m_delayTime > 0 || t_data.m_randDelay)
                 {
+                    // Set the delay time
                     float t_delayTime = t_data.m_delayTime;
-                    if (t_data.m_randDelay)
+                    if (t_data.m_randDelay) // Randomise delay if needed
                     {
                         t_delayTime = UnityEngine.Random.Range(0.1f, 1f);
                     }
+                    // Then play voice clip after the delayed time
                     t_data.m_audioSource.PlayDelayed(t_delayTime);
                 }
+                // Add the current voice clip to the current voices list
                 m_currentVoices.Add(t_data);
             }
         }
 
+        // Play voice line by passing in the name and a world space position
         public void PlayVoice(string _name, Vector3 _pos)
         {
+            // Attempt to get the audio date for the voice line
             AudioData t_data = Array.Find(m_voiceList, voice => voice.m_name == _name);
-            if (t_data == null)
+            if (t_data == null) // If it doesn't exist then display error message
             {
                 Debug.LogError("Didnt find voice");
                 return;
             }
-            else
+            else // If it was found
             {
+                // Set sound's object position
                 t_data.m_object.transform.position = _pos;
+                // Check if there is a delay and if not play voice clip
                 if (t_data.m_delayTime == 0)
                 {
                     t_data.m_audioSource.Play();
                 }
+                // If there is a delay
                 else if (t_data.m_delayTime > 0 || t_data.m_randDelay)
                 {
+                    // Set the delay time
                     float t_delayTime = t_data.m_delayTime;
-                    if (t_data.m_randDelay)
+                    if (t_data.m_randDelay) // Randomise delay if needed
                     {
                         t_delayTime = UnityEngine.Random.Range(0.1f, 1f);
                     }
+                    // Then play voice clip after the delayed time
                     t_data.m_audioSource.PlayDelayed(t_delayTime);
                 }
+                // Add the current voice clip to the current voices list
                 m_currentVoices.Add(t_data);
             }
         }
 
+        // Play voice line by passing in the id
         public void PlayVoice(int _id)
         {
+            // Check whether the id is within range
             if (_id >= 0 && _id < m_voiceList.Length)
             {
                 Debug.Log("Playing voice");
+                // Check if there is a delay and if not play voice clip
                 if (m_voiceList[_id].m_delayTime == 0)
                 {
                     m_voiceList[_id].m_audioSource.Play();
                 }
+                // If there is a delay
                 else if (m_voiceList[_id].m_delayTime > 0 || m_voiceList[_id].m_randDelay)
                 {
+                    // Set the delay time
                     float t_delayTime = m_voiceList[_id].m_delayTime;
-                    if (m_voiceList[_id].m_randDelay)
+                    if (m_voiceList[_id].m_randDelay) // Randomise delay if needed
                     {
                         t_delayTime = UnityEngine.Random.Range(0.1f, 1f);
                     }
+                    // Then play voice clip after the delayed time
                     m_voiceList[_id].m_audioSource.PlayDelayed(t_delayTime);
                 }
+                // Add the current voice clip to the current voices list
                 m_currentVoices.Add(m_voiceList[_id]);
             }
-            else
+            else // If it wasn't found display error message
             {
                 Debug.LogError("Didnt find voice");
                 return;
             }
         }
 
+        // Play voice line by passing in the id and a world space position
         public void PlayVoice(int _id, Vector3 _pos)
         {
+            // Check whether the id is within range
             if (_id >= 0 && _id < m_voiceList.Length)
             {
                 Debug.Log("Playing voice");
+                // Set the sound's object's position
                 m_voiceList[_id].m_object.transform.position = _pos;
+                // Check if there is a delay and if not play voice clip
                 if (m_voiceList[_id].m_delayTime == 0)
                 {
                     m_voiceList[_id].m_audioSource.Play();
                 }
+                // If there is a delay
                 else if (m_voiceList[_id].m_delayTime > 0 || m_voiceList[_id].m_randDelay)
                 {
+                    // Set the delay time
                     float t_delayTime = m_voiceList[_id].m_delayTime;
-                    if (m_voiceList[_id].m_randDelay)
+                    if (m_voiceList[_id].m_randDelay) // Randomise delay if needed
                     {
                         t_delayTime = UnityEngine.Random.Range(0.1f, 1f);
                     }
+                    // Then play voice clip after the delayed time
                     m_voiceList[_id].m_audioSource.PlayDelayed(t_delayTime);
                 }
+                // Add the current voice clip to the current voices list
                 m_currentVoices.Add(m_voiceList[_id]);
             }
-            else
+            else // If it wasn't found display error message
             {
                 Debug.LogError("Didnt find voice");
                 return;
             }
         }
 
+        // Fade in a specific audio
         private IEnumerator FadeIn(AudioData _audioData)
         {
+            // Set volume to 0
             _audioData.m_audioSource.volume = 0;
             float t_volume = _audioData.m_audioSource.volume;
 
+            // While the current volume is less than normal
             while (_audioData.m_audioSource.volume < _audioData.m_volume)
             {
+                // Increase volume by fade in speed
                 t_volume += _audioData.m_fadeInSpeed;
+                // Update volume
                 _audioData.m_audioSource.volume = t_volume;
+                // Wait for 0.1 seconds
                 yield return new WaitForSeconds(0.1f);
             }
         }
 
+        // Fade out a specific audio
         private IEnumerator FadeOut(AudioData _audioData)
         {
+            // Set the temp volume to the current volume
             float t_volume = _audioData.m_audioSource.volume;
 
+            // While volume is greater than 0
             while (_audioData.m_audioSource.volume > 0)
             {
+                // Decrease volume by fade out speed
                 t_volume -= _audioData.m_fadeOutSpeed;
+                // Update volume
                 _audioData.m_audioSource.volume = t_volume;
+                // Wait for 0.1 seconds
                 yield return new WaitForSeconds(0.1f);
             }
+            // If the volume is 0 stop the audio from playing and reset volume
             if (_audioData.m_audioSource.volume == 0)
             {
                 _audioData.m_audioSource.Stop();
@@ -589,131 +658,186 @@ namespace AudioManager
             }
         }
 
+        // Set the global sfx volume
         public void SetSfxGlobalVolume(float _volume)
         {
+            // Check if the passed in volume is valid
             if (_volume >= 0 && _volume <= 1)
             {
+                // If valid update global sfx volume
                 m_sfxGlobalVolume = _volume;
+                // Update all sfx audio data volumes
                 UpdateArrayVolume(m_sfxList);
             }
         }
 
+        // Set the global music volume
         public void SetMusicGlobalVolume(float _volume)
         {
+            // Check if the passed in volume is valid
             if (_volume >= 0 && _volume <= 1)
             {
+                // If valid update global music volume
                 m_musicGlobalVolume = _volume;
+                // Update all sfx audio data volumes
                 UpdateArrayVolume(m_backgroundMusicList);
-                Jukebox.m_instance.UpdateVolume();
+                // If theres a jukebox then update jukebox volume
+                if (Jukebox.m_instance)
+                {
+                    Jukebox.m_instance.UpdateVolume();
+                }
             }
         }
 
+        // Get the global music volume
         public float GetMusicGlobalVolume()
         {
             return m_musicGlobalVolume;
         }
 
+        // Set the global voice volume
         public void SetVoiceGlobalVolume(float _volume)
         {
+            // Check if the passed in volume is valid
             if (_volume >= 0 && _volume <= 1)
             {
+                // If valid update the volume
                 m_voiceGlobalVolume = _volume;
+                // Update all voice audio data volumes
                 UpdateArrayVolume(m_voiceList);
             }
         }
 
+        // Set the master volume
         public void SetMasterVolume(float _volume)
         {
+            // Check if passed in volume is valid
             if (_volume >= 0 && _volume <= 1)
             {
+                // If valid update volume
                 m_masterVolume = _volume;
+                // Update all audio data volumes
                 UpdateArrayVolume(m_sfxList);
                 UpdateArrayVolume(m_backgroundMusicList);
                 UpdateArrayVolume(m_voiceList);
-                Jukebox.m_instance.UpdateVolume();
+                // If there is a jukebox then update its volume
+                if (Jukebox.m_instance)
+                {
+                    Jukebox.m_instance.UpdateVolume();
+                }
             }
         }
 
+        // Get the master volume
         public float GetMasterVolume()
         {
             return m_masterVolume;
         }
 
-        public void UpdateGlobalVolumes(float _sfxVolume, float _musicVolume, float _masterVolume)
+        // Update the manager's global volumes
+        public void UpdateGlobalVolumes(float _sfxVolume, float _musicVolume, float _voiceVolume, float _masterVolume)
         {
+            // Check if new sfx volume is valid and if so set the old volume to the new one
             if (_sfxVolume >= 0 && _sfxVolume <= 1)
             {
                 m_sfxGlobalVolume = _sfxVolume;
             }
+            // Check if new music volume is valid and if so set the old volume to the new one
             if (_musicVolume >= 0 && _musicVolume <= 1)
             {
                 m_musicGlobalVolume = _musicVolume;
             }
+            // Check if new voice volume is valid and if so set the old volume to the new one
+            if (_voiceVolume >= 0 && _voiceVolume <= 1)
+            {
+                m_voiceGlobalVolume = _voiceVolume;
+            }
+            // Check if new master volume is valid and if so set the old volume to the new one
             if (_masterVolume >= 0 && _masterVolume <= 1)
             {
                 m_masterVolume = _masterVolume;
             }
 
+            // Update all sound volumes
             UpdateArrayVolume(m_sfxList);
             UpdateArrayVolume(m_backgroundMusicList);
             UpdateArrayVolume(m_voiceList);
-            Jukebox.m_instance.UpdateVolume();
+            if (Jukebox.m_instance) // If there is a jukebox update volume
+            {
+                Jukebox.m_instance.UpdateVolume();
+            }
         }
 
+        // Update a sound variables based on the audio type
+        // Will update all variables
         public void UpdateSoundVariables(AudioData.AudioType _audioType, int _id, float _volume, float _pitch, bool _looping, float _panStereo, float _spatialBlend, int _priority, float _startDelay)
         {
             switch (_audioType)
             {
+                // If music use the background music list
                 case AudioData.AudioType.MUSIC:
                     UpdateData(m_backgroundMusicList, _id, _volume, _pitch, _looping, _panStereo, _spatialBlend, _priority, _startDelay);
                     break;
 
+                // If sfx use the sfx list
                 case AudioData.AudioType.SFX:
                     UpdateData(m_sfxList, _id, _volume, _pitch, _looping, _panStereo, _spatialBlend, _priority, _startDelay);
                     break;
 
+                // If voice use the voices list
                 case AudioData.AudioType.VOICE:
                     UpdateData(m_voiceList, _id, _volume, _pitch, _looping, _panStereo, _spatialBlend, _priority, _startDelay);
                     break;
             }
         }
 
+        // Update a sound variables based on the audio type
+        // Will update the volume only
         public void UpdateSoundVariables(AudioData.AudioType _audioType, int _id, float _volume)
         {
             switch (_audioType)
             {
+                // If music use the background music list
                 case AudioData.AudioType.MUSIC:
                     UpdateData(m_backgroundMusicList, _id, _volume);
                     break;
 
+                // If sfx use the sfx list
                 case AudioData.AudioType.SFX:
                     UpdateData(m_sfxList, _id, _volume);
                     break;
 
+                // If voice use the voices list
                 case AudioData.AudioType.VOICE:
                     UpdateData(m_voiceList, _id, _volume);
                     break;
             }
         }
 
+        // Update a sound variables based on the audio type
+        // Will update the volume and pitch
         public void UpdateSoundVariables(AudioData.AudioType _audioType, int _id, float _volume, float _pitch)
         {
             switch (_audioType)
             {
+                // If music use the background music list
                 case AudioData.AudioType.MUSIC:
                     UpdateData(m_backgroundMusicList, _id, _pitch);
                     break;
 
+                // If sfx use the sfx list
                 case AudioData.AudioType.SFX:
                     UpdateData(m_sfxList, _id, _pitch);
                     break;
 
+                // If voice use the voices list
                 case AudioData.AudioType.VOICE:
                     UpdateData(m_voiceList, _id, _pitch);
                     break;
             }
         }
 
+        // Update audio source data using data set up through the inspector
         public void UpdateData(AudioData[] _array, int _id)
         {
             _array[_id].SetOriginalVolume(_array[_id].m_volume);
@@ -726,6 +850,7 @@ namespace AudioManager
             _array[_id].m_audioSource.priority = _array[_id].m_priority;
         }
 
+        // Update audio source data using data thats passed in
         private void UpdateData(AudioData[] _array, int _id, float _volume, float _pitch, bool _looping, float _panStereo, float _spatialBlend, int _priority, float _startDelay)
         {
             _array[_id].SetOriginalVolume(_volume);
@@ -739,6 +864,7 @@ namespace AudioManager
             _array[_id].m_delayTime = _startDelay;
         }
 
+        // Update the volume of a specific sound
         private void UpdateData(AudioData[] _array, int _id, float _volume)
         {
             _array[_id].SetOriginalVolume(_volume);
@@ -746,6 +872,7 @@ namespace AudioManager
             _array[_id].m_audioSource.volume = _array[_id].m_volume;
         }
 
+        // Update the volume and pitch of a specific sound
         private void UpdateData(AudioData[] _array, int _id, float _volume, float _pitch)
         {
             _array[_id].SetOriginalVolume(_volume);
@@ -754,53 +881,76 @@ namespace AudioManager
             _array[_id].m_audioSource.pitch = _pitch;
         }
 
+        // Stop playing audio
         public void StopPlaying()
         {
+            // Music
+            // If there is an audio source for the current track stop audio
             if (m_currentMusic.m_audioSource != null)
             {
                 m_currentMusic.m_audioSource.Stop();
             }
 
+            // Voices
+            // If there are any voice tracks in the current voices list
             if (m_currentVoices.Count > 0)
             {
+                // Loop through the list
                 for (int i = 0; i < m_currentVoices.Count; i++)
                 {
+                    // Stop the audio
                     m_currentVoices[i].m_audioSource.Stop();
                 }
+                // Clear the current voices list
                 m_currentVoices.Clear();
             }
 
+            // SFX
+            // If there are any sfx tracks in the current sfx list
             if (m_currentSFX.Count > 0)
             {
+                // Loop through the list
                 for (int i = 0; i < m_currentSFX.Count; i++)
                 {
+                    // Stop the audio
                     m_currentSFX[i].m_audioSource.Stop();
                 }
+                // Clear the current sfx list
                 m_currentSFX.Clear();
             }
         }
 
+        // Pause/Unpause Audio
         public void PauseUnpauseAudio()
         {
+            // Background Music
+            // If theres an audio source for the current tracl
             if (m_currentMusic.m_audioSource != null)
             {
+                // If audio is playing then pause
                 if (m_currentMusic.m_audioSource.isPlaying)
                 {
                     m_currentMusic.m_audioSource.Pause();
                 }
+                // Else unpause audio
                 else
                 {
                     m_currentMusic.m_audioSource.UnPause();
                 }
             }
+            // Voices
+            // If there are any voices within the current voices list
             if (m_currentVoices.Count > 0)
             {
+                // Loop through list
                 for (int i = 0; i < m_currentVoices.Count; i++)
                 {
+                    // If the audio is playing then pause it
                     if (m_currentVoices[i].m_audioSource.isPlaying)
                     {
                         m_currentVoices[i].m_audioSource.Pause();
                     }
+                    // Else unpause the audio
                     else
                     {
                         m_currentVoices[i].m_audioSource.UnPause();
@@ -808,14 +958,19 @@ namespace AudioManager
                 }
             }
 
+            // SFX
+            // If there are any sfx within the current voices list
             if (m_currentSFX.Count > 0)
             {
+                // Loop through the list
                 for (int i = 0; i < m_currentSFX.Count; i++)
                 {
+                    // If there is audio playing then pause it
                     if (m_currentSFX[i].m_audioSource.isPlaying)
                     {
                         m_currentSFX[i].m_audioSource.Pause();
                     }
+                    // Else Unpause it
                     else
                     {
                         m_currentSFX[i].m_audioSource.UnPause();
